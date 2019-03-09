@@ -95,9 +95,9 @@ namespace CronQuery.Mvc.Jobs
         {
             if (!_options.Running) return;
 
-            var timezone = TimeZoneInfo.FindSystemTimeZoneById(_options.Timezone ?? "UTC");
+            var timezone = TimeZoneInfo.CreateCustomTimeZone("CronTime", TimeSpan.FromHours(_options.TimezoneOffset), "Cron Timezone", "My Custom Cron Timezone");
 
-            foreach (var job in Jobs)
+			foreach (var job in Jobs)
             {
                 var config = _options.Jobs.SingleOrDefault(entry => entry.Name == job.Name);
 
