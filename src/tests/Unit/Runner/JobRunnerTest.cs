@@ -49,7 +49,7 @@ namespace tests.Unit.Runner
             Assert.True(serviceProvider.GetService<JobSuccessful>().Executed);
         }
 
-        [Fact]
+		[Fact]
         public void ShouldNotRunStoppedJob()
         {
             var optionsMonitor = new OptionsMonitorFake(JobStopped.Options);
@@ -218,5 +218,5 @@ namespace tests.Unit.Runner
             Assert.Contains(loggerFactory.Logger.Messages, message =>
                 message == $"Job '{nameof(JobWithError)}' failed during running.");
         }
-    }
+	}
 }

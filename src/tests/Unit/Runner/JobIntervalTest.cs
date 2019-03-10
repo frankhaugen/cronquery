@@ -36,7 +36,8 @@ namespace tests.Unit.Runner
         {
             var fires = 0;
             var cron = new CronExpression("* * * * * *");
-            var interval = new JobInterval(cron, TimeZoneInfo.Utc, () => Task.FromResult(++fires));
+			var customTimezone = TimeZoneInfo.CreateCustomTimeZone("CronTime", TimeSpan.FromHours(1.9), "Cron Timezone", "My Custom Cron Timezone");
+			var interval = new JobInterval(cron, customTimezone, () => Task.FromResult(++fires));
 
             interval.Run();
 
